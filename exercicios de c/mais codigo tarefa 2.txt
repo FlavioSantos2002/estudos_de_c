@@ -1,0 +1,297 @@
+QUESTÃO 01
+
+#include <stdio.h>
+int main(){
+    int A[5] = {1,2,3,4,5}; // quatro posicoes pois a ultima é reservada ao \0
+    int B[4], i;
+    for(i = 0; i< 5; i++ ){
+        if(A[i]%2==0){
+            B[i] = A[i] * 5;
+        }
+        else{
+            B[i] = A[i] + 5;
+        }
+    }
+    i = 0;
+    for(i = 0; i < 5; i++ ){
+        printf("%d ", B[i]);
+    }
+}
+
+QUETÃO 02
+
+#include <stdio.h>
+int main() {
+    float numeros[10];
+    int i;
+    for(i = 0; i<10; i++){
+        printf("digite o %d° numero: ", i+1);
+        scanf("%f", &numeros[i]);
+        fflush(stdin);
+    } 
+    i = 0;
+    float media, soma;
+    for(i = 0; i<10; i++){
+        soma = soma + numeros[i];
+    }
+    media = soma/i;
+    i = 0;
+    printf("o vetor = [");
+    for(i = 0; i < 10; i++ ){
+        printf("%.2f, ", numeros[i]);
+    }
+    printf("]");
+    printf("\no valor da soma de seus elementos eh: %.2f", soma);
+    printf("\ne o valor de sua media eh: %.2f", media);
+}
+
+
+QUESTÃO 03
+
+#include <stdio.h>
+#include <string.h>
+#define P "a palavra que vc quer inverter"
+int main() {
+    char palavra[] = P;
+    int tam, i; 
+    tam = strlen(palavra);
+    char inversa[tam];
+    for(i = 0; i < tam; i++){
+        inversa[i] = palavra[tam-i-1];
+    }
+    printf("ordem original: ");
+    puts(palavra);
+    printf("\nordem inversa: ");
+    puts(inversa);
+}
+
+QUESTÃO 04
+
+#include <stdio.h>
+#include <string.h>
+int main(){
+    int vetor[10] = {0,-1,2,-3,-4,5,6,-7,8,-9};
+    int i, cont=0;
+    for(i=0; i<10; i++){
+        if(vetor[i]>=0){
+            cont = cont + 1;
+        }
+    }
+    i = 0;
+    printf("o vetor: [");
+    for(i=0; i<10; i++){
+        printf("%d, ", vetor[i]);
+    }
+    printf("], ");
+    printf("tem %d numeros negativos", cont);
+}
+
+QUESTÃO 05
+
+#include <stdio.h>
+int main(){
+    int vetor[5];
+    int i, maior, menor, d;
+    for(i=0; i<5; i++){
+        printf("digite o %d° numero: ", i + 1);
+        scanf("%d", &vetor[i]);
+    }
+    maior = menor = vetor[0];
+    for(i = 0, d = 1; i < 4; i++, d++){
+        if(maior<vetor[d]){
+            maior = vetor[d];
+        }
+        if(menor>vetor[d]){
+            menor = vetor[d];
+        }
+    }
+    printf("o vetor: [");
+    for(i=0; i<5; i++){
+        printf("%d, ", vetor[i]);
+    }
+    printf("], ");
+    printf("menor = %d, maior = %d.", menor, maior);
+}
+
+QUESTÃO 06
+
+#include <stdio.h>
+int main() {
+    float D, Dx, Dy, n[6], x, y;
+    int i;
+    char v[] = "abcdef";
+    
+    printf("~~SISTEMA 2X2~~\n");
+    printf("| ax + by = c| \n");
+    printf("| dx + ey = f| \n");
+    
+    
+    for(i=0; i<6; i++){
+        printf("digite o valor da variavel %c: ", v[i]);
+        scanf("%f", &n[i]);
+        fflush(stdin);
+    }
+    
+    printf("\n~~~~~~SISTEMA 2X2~~~~~~~~\n");
+    printf("|%.2fx + %.2fy = %.2f|\n", n[0], n[1], n[2]);
+    printf("|%.2fx + %.2fz = %.2f|\n", n[3], n[4], n[5]); 
+    
+    
+    D = (n[0]*n[4]) - (n[1]*n[3]);
+    Dx = (n[2]*n[4]) - (n[1]*n[5]);
+    Dy = (n[0]*n[5]) - (n[2]*n[3]);
+    
+     if(D==0){
+        printf("\nO SISTEMA É IMPOSSIVEL, pois D=0");
+        printf("\nDx e Dy valem respectivamente: %.2f, %.2f", Dx, Dy);
+    }
+    else{
+        x = Dx/D;
+        y = Dy/D;
+        printf("\nSEU DETERMINANTE EH: %.2f", D);
+        printf("\nEsse sistema possui SOLUÇAO, por Crammer, de forma que Dx e Dy valem respectivamente: %.2f, %.2f", Dx, Dy);
+        printf("\nOs valores de x e y respectivamente sao: %.2f e %.2f", x, y);
+    }
+}
+
+
+
+QUESTÃO 07
+
+
+#include <stdio.h>
+int main() {
+    int i;
+    float n[12], D, Dx,Dy, Dz, x, y, z;
+    char v[] = "abcjdefkghil";
+    
+    printf("~~~~SISTEMA 3X3~~~~\n");
+    printf("|ax + by + cz = j|\n");
+    printf("|dx + ey + fz = k|\n");
+    printf("|gx + hy + iz = l|\n");
+    for(i=0; i<12; i++){
+        printf("digite o valor da variavel %c: ", v[i]);
+        scanf("%f", &n[i]);
+        fflush(stdin);
+    }
+    printf("\n\n~~~~~~~~SISTEMA 3X3~~~~~~~~~~\n");
+    printf("|%.2fx + %.2fy + %.2fz = %.2f|\n", n[0], n[1], n[2], n[3]);
+    printf("|%.2fx + %.2fy + %.2fz = %.2f|\n", n[4], n[5], n[6], n[7]);
+    printf("|%.2fx + %.2fy + %.2fz = %.2f|\n", n[8], n[9], n[10], n[11]);
+    
+    D = (((n[0]*n[5]*n[10]) + (n[1]*n[6]*n[8]) + (n[2]*n[4]*n[9])) - ((n[2]*n[5]*n[8]) + (n[0]*n[6]*n[9]) + (n[1]*n[4]*n[10])));
+   
+    Dx = (((n[1]*n[6]*n[11]) + (n[2]*n[7]*n[9]) + (n[3]*n[5]*n[10])) - ((n[3]*n[6]*n[9]) + (n[1]*n[7]*n[10]) + (n[2]*n[5]*n[11])));
+ 
+    Dy = (((n[0]*n[6]*n[11]) + (n[2]*n[7]*n[8]) + (n[3]*n[4]*n[10])) - ((n[3]*n[6]*n[8]) + (n[0]*n[7]*n[10]) + (n[2]*n[4]*n[11])))*(-1);
+    
+    Dz = (((n[0]*n[5]*n[11]) + (n[1]*n[7]*n[8]) + (n[3]*n[4]*n[9])) - ((n[3]*n[5]*n[8]) + (n[0]*n[7]*n[9]) + (n[1]*n[4]*n[11])));
+    
+    if(D==0){
+        printf("\nO SISTEMA É IMPOSSIVEL, pois D=0");
+        printf("\nDx, Dy, e Dz valem respectivamente: %.2f, %.2f, %.2f", Dx, Dy, Dz);
+    }
+    else{
+        x = Dx/D;
+        y = Dy/D;
+        z = Dz/D;
+        printf("\nSEU DETERMINANTE EH: %.2f", D);
+        printf("\nEsse sistema possui SOLUÇAO, por Crammer, de forma que Dx, Dy, e Dz valem respectivamente: %.2f, %.2f, %.2f", Dx, Dy, Dz);
+        printf("\nOs valores de x, y e z respectivamente sao: %.2f, %.2f e %.2f", x, y, z);
+    }
+}
+
+
+QUESTÃO 08
+
+#include <stdio.h>
+int main(){
+    int i, j, m, n, p, q, soma, x;
+    
+    //LETRAS
+    printf("Amxn * Bpxq = Cmxq\n");
+    printf("digite o valor da letra m\n");
+    scanf("%d", &m);
+    fflush(stdin);
+    printf("digite o valor da letra n\n");
+    scanf("%d", &n);
+    fflush(stdin);
+    printf("digite o valor da letra p\n");
+    scanf("%d", &p);
+    fflush(stdin);
+    printf("digite o valor da letra q\n");
+    scanf("%d", &q);
+    fflush(stdin);
+    
+    if((m<=0) || (n<=0) || (p<=0) || (q<=0) || (n!=p)){
+        printf("impossivel pois p ≠ n, ou alguma coluna ou linha é <=0\n");
+    }
+    else{
+        int a[m][n], b[p][q], c[m][q];
+        
+        //LENDO A MATRIZ A
+        
+        for(i = 0; i<m;i++){
+            for(j=0; j<n; j++){
+                printf("digite o elemento da lina %d, coluna %d da matriz A: ", i+1, j+1);
+                scanf("%d", &a[i][j]);
+                fflush(stdin);
+            }
+        }
+        printf("__________MATRIZ A__________\n");
+        for(i = 0; i<m;i++){
+            for(j=0; j<n; j++){
+                printf("%d ", a[i][j]);
+            } 
+            printf("\n");
+        }
+        printf("____________________________\n\n");
+        
+        
+        //LENDO A MATRIZ B
+        
+        for(i = 0; i<p;i++){
+            for(j=0; j<q; j++){
+                printf("digite o elemento da lina %d, coluna %d da matriz B: ", i+1, j+1);
+                scanf("%d", &b[i][j]);
+                fflush(stdin);
+            }
+        }
+        printf("__________MATRIZ B__________\n");
+        for(i = 0; i<p;i++){
+            for(j=0; j<q; j++){
+                printf("%d ", b[i][j]);
+            } 
+            printf("\n");
+        }
+        printf("____________________________\n\n");
+        
+        //MATRIZ C
+        for(i = 0; i < m; i++) {
+    		for(j = 0; j < q; j++) {
+    			c[i][j] = 0;
+    			for(x = 0; x < p; x++) {
+    				soma = soma + a[i][x] * b[x][j];
+    			}
+    			c[i][j] = soma;
+    			soma = 0;
+    		}
+	    }
+	    
+	    
+	    printf("\n       Resultado AxB=C    \n");
+	    printf("⇩⇩⇩⇩⇩⇩⇩⇩⇩⇩⇩⇩⇩⇩⇩⇩⇩⇩⇩⇩⇩⇩⇩⇩⇩⇩⇩⇩\n");
+	    
+	    
+	    printf("__________MATRIZ C__________\n");
+	    for(i = 0; i < m; i++) {
+    		for(j = 0; j < q; j++) {
+    		    printf("%d ", c[i][j]);
+    		}
+    		printf("\n");
+	    } 
+	    printf("____________________________\n\n");
+    }
+    
+  
+}
